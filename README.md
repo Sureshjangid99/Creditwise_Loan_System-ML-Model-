@@ -29,6 +29,16 @@ A Machine Learning model that evaluates applicant data and predicts loan approva
 - KNN   
 - Naive Bayes
 
+## 📊 Model Performance
+
+- Logistic Regression Accuracy: 87%
+- Decision Tree Accuracy: 82%
+
+- ## 📈 Confusion Matrix
+
+![Confusion Matrix](assets/confusion_matrix.png)
+
+
 ## 🛠 Tech Stack
 Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn 
 
