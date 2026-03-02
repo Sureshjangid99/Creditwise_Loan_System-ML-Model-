@@ -42,5 +42,20 @@ A Machine Learning model that evaluates applicant data and predicts loan approva
 ## 🛠 Tech Stack
 Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn 
 
+
+---
+
+## 🔮 Future Improvements
+
+- Hyperparameter tuning (GridSearchCV)
+- ROC Curve visualization
+- Model comparison (Random Forest, XGBoost)
+- CI/CD integration
+- Docker deployment
+
+---
+
 ## 👨‍💻 Author
-**Suresh Jangid**
+
+Suresh Jangid  
+AI & Data Science Enthusiast
