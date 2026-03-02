@@ -26,11 +26,11 @@ A Machine Learning model that evaluates applicant data and predicts loan approva
 
 ## 🤖 Algorithms
 - Logistic Regression  
-- Decision Tree  
-- Random Forest  
+- KNN   
+- Naive Bayes
 
 ## 🛠 Tech Stack
-Python, Pandas, NumPy, Scikit-learn, Matplotlib
+Python, Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn 
 
 ## 👨‍💻 Author
 **Suresh Jangid**
