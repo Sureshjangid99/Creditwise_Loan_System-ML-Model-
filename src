@@ -1,0 +1,89 @@
+import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.compose import ColumnTransformer
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
+
+def load_data(path):
+    return pd.read_csv(path)
+
+def preprocess_data(df, target_column):
+    X = df.drop(columns=[target_column])
+    y = df[target_column]
+
+    categorical_cols = X.select_dtypes(include=["object"]).columns
+    numeric_cols = X.select_dtypes(exclude=["object"]).columns
+
+    preprocessor = ColumnTransformer([
+        ("num", StandardScaler(), numeric_cols),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_cols)
+    ])
+
+    return X, y, preprocessor
+
+
+
+from sklearn.linear_model import LogisticRegression
+from sklearn.pipeline import Pipeline
+import joblib
+
+def train_model(X_train, y_train, preprocessor):
+    model = Pipeline(steps=[
+        ("preprocessor", preprocessor),
+        ("classifier", LogisticRegression())
+    ])
+
+    model.fit(X_train, y_train)
+    return model
+
+def save_model(model, path="models/loan_model.pkl"):
+    joblib.dump(model, path)
+
+
+
+
+from sklearn.metrics import classification_report, confusion_matrix
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+def evaluate_model(model, X_test, y_test):
+    y_pred = model.predict(X_test)
+
+    print(classification_report(y_test, y_pred))
+
+    cm = confusion_matrix(y_test, y_pred)
+
+    plt.figure()
+    sns.heatmap(cm, annot=True, fmt="d")
+    plt.title("Confusion Matrix")
+    plt.savefig("assets/confusion_matrix.png")
+    plt.show()
+
+
+
+
+
+from sklearn.model_selection import train_test_split
+from src.data_preprocessing import load_data, preprocess_data
+from src.model_training import train_model, save_model
+from src.evaluate import evaluate_model
+
+df = load_data("data/loan_data.csv")
+
+X, y, preprocessor = preprocess_data(df, target_column="Loan_Status")
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, random_state=42
+)
+
+model = train_model(X_train, y_train, preprocessor)
+
+evaluate_model(model, X_test, y_test)
+
+save_model(model)
+
+
+
+
+
