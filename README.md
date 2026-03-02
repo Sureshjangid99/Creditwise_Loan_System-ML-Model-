@@ -32,7 +32,7 @@ A Machine Learning model that evaluates applicant data and predicts loan approva
 ## 📊 Model Performance
 
 - Logistic Regression Accuracy: 87%
-- Decision Tree Accuracy: 82%
+-Naive Bayes Accuracy: 82%
 
 - ## 📈 Confusion Matrix
 
